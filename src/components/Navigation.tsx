@@ -2,6 +2,7 @@ import {
     AppBar,
     Box,
     Button,
+    Divider,
     Drawer,
     IconButton,
     List,
@@ -109,15 +110,14 @@ export default function Navigation() {
                     >
                         <Toolbar
                             sx={{
-                                display: "flex",
                                 justifyContent: "right",
-                                borderBottom: "1px solid #ccc",
                             }}
                         >
                             <IconButton onClick={toggleDrawer(false)}>
                                 <Close fontSize="large" />
                             </IconButton>
                         </Toolbar>
+                        <Divider />
                         <List>
                             {mobileLinks.map((link, index) => (
                                 <ListItemButton
