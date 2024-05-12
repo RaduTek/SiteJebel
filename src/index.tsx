@@ -5,12 +5,19 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Main from "./layouts/Main";
 import Landing from "./pages/Landing";
-import Theme from "./layouts/Theme";
+import Admin from "./admin/Admin";
+import Overview from "./admin/pages/Overview";
 
 const router = createBrowserRouter([
     {
         path: "/admin",
-        element: <div>Admin dashboard</div>,
+        element: <Admin />,
+        children: [
+            {
+                path: "/admin",
+                element: <Overview />,
+            },
+        ],
     },
     {
         path: "/",
@@ -34,6 +41,19 @@ const router = createBrowserRouter([
             },
         ],
     },
+    {
+        path: "/",
+        children: [
+            {
+                path: "/login",
+                element: <div>Login prompt</div>,
+            },
+            {
+                path: "/logout",
+                element: <div>Logout prompt</div>,
+            },
+        ],
+    },
 ]);
 
 const root = ReactDOM.createRoot(
@@ -41,9 +61,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <Theme>
-            <RouterProvider router={router} />
-        </Theme>
+        <RouterProvider router={router} />
     </React.StrictMode>
 );
 
