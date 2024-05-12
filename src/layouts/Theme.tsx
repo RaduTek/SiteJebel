@@ -26,6 +26,7 @@ const theme = createTheme({
             styleOverrides: {
                 colorPrimary: {
                     backgroundColor: "white",
+                    color: "black",
                 },
             },
         },
