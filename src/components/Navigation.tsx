@@ -7,6 +7,7 @@ import {
     List,
     ListItemButton,
     ListItemText,
+    Stack,
     Toolbar,
     useMediaQuery,
 } from "@mui/material";
@@ -14,7 +15,8 @@ import Logo from "./Logo";
 import handleRouterPush from "../utils/handleRouterPush";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Menu } from "@mui/icons-material";
+import { Close, Menu } from "@mui/icons-material";
+import Socials from "./Socials";
 
 const links = [
     {
@@ -101,7 +103,21 @@ export default function Navigation() {
                     open={drawerOpen}
                     onClose={toggleDrawer(false)}
                 >
-                    <Box sx={{ width: 250 }}>
+                    <Stack
+                        sx={{ width: 250, height: "100%" }}
+                        direction="column"
+                    >
+                        <Toolbar
+                            sx={{
+                                display: "flex",
+                                justifyContent: "right",
+                                borderBottom: "1px solid #ccc",
+                            }}
+                        >
+                            <IconButton onClick={toggleDrawer(false)}>
+                                <Close fontSize="large" />
+                            </IconButton>
+                        </Toolbar>
                         <List>
                             {mobileLinks.map((link, index) => (
                                 <ListItemButton
@@ -114,7 +130,9 @@ export default function Navigation() {
                                 </ListItemButton>
                             ))}
                         </List>
-                    </Box>
+                        <Box sx={{ flex: 1 }}></Box>
+                        <Socials />
+                    </Stack>
                 </Drawer>
             )}
         </>
