@@ -7,6 +7,7 @@ import Main from "./layouts/Main";
 import Landing from "./pages/Landing";
 import Admin from "./admin/Admin";
 import Overview from "./admin/pages/Overview";
+import Events from "./pages/Events";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/events",
-                element: <div>Event list</div>,
+                element: <Events />,
             },
             {
                 path: "/courses",
