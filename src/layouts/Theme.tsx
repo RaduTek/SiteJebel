@@ -28,6 +28,16 @@ const theme = createTheme({
                     backgroundColor: "white",
                     color: "black",
                 },
+                root: {
+                    userSelect: "none",
+                },
+            },
+        },
+        MuiDrawer: {
+            styleOverrides: {
+                root: {
+                    userSelect: "none",
+                },
             },
         },
         MuiToolbar: {
@@ -37,6 +47,7 @@ const theme = createTheme({
                     maxWidth: pageWidth,
                     width: "100%",
                     minHeight: "64px",
+                    userSelect: "none",
                 },
             },
         },
