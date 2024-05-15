@@ -23,6 +23,9 @@ export default function Logo({
     const bannerLogoStyle = {
         fill: "white",
         height: "200px",
+        width: "auto",
+        maxWidth: "90vw",
+        filter: "drop-shadow(0 5px 15px black)",
     };
 
     const renderLogo = () => {
