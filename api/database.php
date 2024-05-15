@@ -53,7 +53,7 @@ function select_from($table_name, $columns=null, $limit=0, $offset=0) {
     return $DB_CONN -> query($sql);
 }
 
-function select_from_where($table_name, $columns=null, $id_value, $id_column="id", $limit=0, $offset=0) {
+function select_from_where($table_name, $columns=null, $id_value, $id_column="id", $comparison_type="=", $limit=0, $offset=0) {
     global $DB_CONN;
     if (is_null($DB_CONN)) return NULL;
     
@@ -62,7 +62,7 @@ function select_from_where($table_name, $columns=null, $id_value, $id_column="id
     else
         $column_names = implode(', ', $columns);
 
-    $sql = "SELECT $column_names FROM $table_name WHERE $id_column = ?";
+    $sql = "SELECT $column_names FROM $table_name WHERE $id_column $comparison_type ?";
 
     if ($limit > 0)
         $sql .= " LIMIT $limit OFFSET $offset";
@@ -101,11 +101,11 @@ function insert_into($table_name, $values) {
     return !($stmt -> error);
 }
 
-function delete_from($table_name, $id_value, $id_column="id") {
+function delete_from($table_name, $id_value, $id_column="id", $comparison_type="=") {
     global $DB_CONN, $DB;
     if (is_null($DB_CONN)) return NULL;
 
-    $sql = "DELETE FROM $table_name WHERE $id_column = ?";
+    $sql = "DELETE FROM $table_name WHERE $id_column $comparison_type ?";
     $stmt = $DB_CONN->prepare($sql);
     $stmt->bind_param("i", $id_value);
     $stmt->execute();
@@ -115,14 +115,14 @@ function delete_from($table_name, $id_value, $id_column="id") {
     return $stmt->affected_rows > 0;
 }
 
-function update_where($table_name, $values, $id_value, $id_column="id") {
+function update_where($table_name, $values, $id_value, $id_column="id", $comparison_type="=") {
     global $DB_CONN, $DB;
     if (is_null($DB_CONN)) return NULL;
 
     $columns = array_keys($values);
     $column_names = implode(" = ?, ", $columns) . " = ?";
 
-    $sql = "UPDATE $table_name SET $column_names WHERE $id_column = ?";
+    $sql = "UPDATE $table_name SET $column_names WHERE $id_column $comparison_type ?";
     $stmt = $DB_CONN->prepare($sql);
     
     $bind_values = array_values($values);
