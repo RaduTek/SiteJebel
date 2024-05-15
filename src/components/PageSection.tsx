@@ -5,7 +5,7 @@ export default function PageSection({
     children,
 }: {
     sx?: SxProps;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }) {
     return (
         <Stack
