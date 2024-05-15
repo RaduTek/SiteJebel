@@ -15,4 +15,17 @@ function redirect($new_url, $code = 301) {
     header("Location: " . $new_url, true, $code);
 }
 
+function return_json($data) {
+    header('Content-Type: application/json');
+    echo(json_encode($data));
+}
+
+function check_set_keys($keys, $array) {
+    foreach ($keys as $key) {
+        if (!isset($array[$key]))
+            return false;
+    }
+    return true;
+}
+
 ?>
