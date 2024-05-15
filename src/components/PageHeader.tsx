@@ -50,7 +50,7 @@ export default function PageHeader({
                     alignItems: "center",
                     justifyContent: "center",
                     padding: "20px",
-                    gap: "10px",
+                    gap: "15px",
                 }}
             >
                 {children}
