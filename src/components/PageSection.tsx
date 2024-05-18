@@ -12,7 +12,7 @@ export default function PageSection({
             sx={{
                 maxWidth: "var(--page-width)",
                 margin: "0 auto",
-                padding: "15px",
+                padding: "20px",
                 ...sx,
             }}
         >
