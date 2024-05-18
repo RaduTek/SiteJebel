@@ -2,3 +2,16 @@
     --heading-font: Oswald, sans-serif;
     --page-width: 1000px;
 }
+
+.titleHighlight {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.titleHighlight::before,
+.titleHighlight::after {
+    content: " ";
+    border-bottom: 2px solid #ccc;
+    flex: 1;
+}
