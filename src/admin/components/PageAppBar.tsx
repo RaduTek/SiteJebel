@@ -6,7 +6,7 @@ import {
     useMediaQuery,
 } from "@mui/material";
 import { useAtom } from "jotai";
-import { adminDrawerOpen } from "../atoms";
+import { adminDrawerOpen } from "../../atoms";
 import { Menu } from "@mui/icons-material";
 
 export default function PageAppBar({
