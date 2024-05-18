@@ -5,7 +5,7 @@ import Timeline from "../components/Timeline";
 import { useNavigate } from "react-router-dom";
 import handleRouterPush from "../utils/handleRouterPush";
 
-export default function Events({ past }: { past?: boolean }) {
+export default function EventsPage({ past }: { past?: boolean }) {
     const navigate = useNavigate();
 
     return (

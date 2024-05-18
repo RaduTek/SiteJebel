@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import Theme from "./Theme";
 
-export default function Main() {
+export default function MainLayout() {
     return (
         <Theme>
             <Navigation />
