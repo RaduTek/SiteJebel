@@ -19,6 +19,7 @@ export default function Logo({
     const footerLogoStyle = {
         fill: "#555",
         height: "100px",
+        width: "100%",
     };
     const bannerLogoStyle = {
         fill: "white",
