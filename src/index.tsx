@@ -3,11 +3,16 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Main from "./layouts/Main";
-import Landing from "./pages/Landing";
+import MainLayout from "./layouts/Main";
+import LandingPage from "./pages/Landing";
 import Admin from "./admin/Admin";
 import Overview from "./admin/pages/Overview";
-import Events from "./pages/Events";
+import EventsPage from "./pages/Events";
+import AuthLayout from "./auth/Layout";
+import LoginPage from "./auth/Login";
+import SignUpPage from "./auth/SignUp";
+import CoursesPage from "./pages/courses/Courses";
+import AboutPage from "./pages/About";
 
 const router = createBrowserRouter([
     {
@@ -22,41 +27,46 @@ const router = createBrowserRouter([
     },
     {
         path: "/",
-        element: <Main />,
+        element: <MainLayout />,
         children: [
             {
                 path: "/",
-                element: <Landing />,
+                element: <LandingPage />,
             },
             {
                 path: "/about",
-                element: <div>About page</div>,
+                element: <AboutPage />,
             },
             {
                 path: "/events",
                 children: [
                     {
                         path: "/events",
-                        element: <Events />,
+                        element: <EventsPage />,
                     },
                     {
                         path: "/events/past",
-                        element: <Events past={true} />,
+                        element: <EventsPage past={true} />,
                     },
                 ],
             },
             {
                 path: "/courses",
-                element: <div>Course list</div>,
+                element: <CoursesPage />,
             },
         ],
     },
     {
         path: "/",
+        element: <AuthLayout />,
         children: [
             {
                 path: "/login",
-                element: <div>Login prompt</div>,
+                element: <LoginPage />,
+            },
+            {
+                path: "/signup",
+                element: <SignUpPage />,
             },
             {
                 path: "/logout",
