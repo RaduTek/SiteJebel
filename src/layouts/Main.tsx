@@ -1,15 +1,19 @@
-import { CssBaseline, Toolbar } from "@mui/material";
+import { Box, CssBaseline, Toolbar } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import Theme from "./Theme";
+import Footer from "../components/Footer";
 
 export default function MainLayout() {
     return (
         <Theme>
             <Navigation />
             <CssBaseline />
-            <Toolbar />
-            <Outlet />
+            <Box sx={{ minHeight: "80vh" }}>
+                <Toolbar />
+                <Outlet />
+            </Box>
+            <Footer />
         </Theme>
     );
 }
