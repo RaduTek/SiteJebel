@@ -17,7 +17,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import handleRouterPush from "../utils/handleRouterPush";
 import { useAtom } from "jotai";
-import { adminDrawerOpen } from "./atoms";
+import { adminDrawerOpen } from "../atoms";
 import {
     ChevronLeft,
     Dashboard,
