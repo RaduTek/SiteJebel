@@ -8,7 +8,14 @@ export default function AboutPage() {
             <PageHeader height="small">
                 <Typography variant="h3">Despre Noi</Typography>
             </PageHeader>
-            <PageSection></PageSection>
+            <PageSection sx={{ paddingTop: 3, textAlign: "center", gap: 2 }}>
+                <Typography variant="h4">
+                    Vom reveni cu detalii în curând.
+                </Typography>
+                <Typography>
+                    Până atunci, citește introducerea de pe pagina principală.
+                </Typography>
+            </PageSection>
         </>
     );
 }
