@@ -15,7 +15,7 @@ const socialLinks = [
     },
 ];
 
-export default function Socials() {
+export default function Socials({ large }: { large?: boolean }) {
     return (
         <Stack direction="column" sx={{ paddingBottom: 2 }}>
             <Typography align="center" fontSize={14}>
@@ -29,11 +29,15 @@ export default function Socials() {
                         target="_blank"
                         key={index}
                         title={link.name}
+                        sx={{
+                            fontSize: large ? "48px" : "32px",
+                            padding: large ? 1.5 : 1,
+                        }}
                     >
                         <SvgIcon
                             component={link.icon}
                             inheritViewBox
-                            fontSize="large"
+                            fontSize="inherit"
                         />
                     </IconButton>
                 ))}
