@@ -1,7 +1,11 @@
 <?php
 
-session_start();
+/**
+ * Destroy the current session
+ */
 
-session_destroy();
+// Load the session
+start_auth();
 
-?>
+// Destroy the session
+end_auth();
