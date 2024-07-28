@@ -13,6 +13,8 @@ import LoginPage from "./auth/Login";
 import SignUpPage from "./auth/SignUp";
 import CoursesPage from "./pages/courses/Courses";
 import AboutPage from "./pages/About";
+import { Auth } from "./auth/Auth";
+import LogoutPage from "./auth/Logout";
 
 const router = createBrowserRouter([
     {
@@ -70,7 +72,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/logout",
-                element: <div>Logout prompt</div>,
+                element: <LogoutPage />,
             },
         ],
     },
@@ -81,7 +83,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
     <React.StrictMode>
-        <RouterProvider router={router} />
+        <Auth>
+            <RouterProvider router={router} />
+        </Auth>
     </React.StrictMode>
 );
 
