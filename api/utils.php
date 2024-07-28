@@ -44,12 +44,15 @@ function get_json(): array
  *
  * @param mixed $data The data to be encoded as JSON and returned.
  * @param int $status_code The HTTP status code for the response. Default is 200.
+ * @param bool $exit True if function shall end the script or not. Default = true.
  */
-function return_json(mixed $data, int $status_code = 200)
+function return_json(mixed $data, int $status_code = 200, bool $exit = true)
 {
     header('Content-Type: application/json');
     http_response_code($status_code);
     echo (json_encode($data));
+    if ($exit)
+        exit();
 }
 
 /**
