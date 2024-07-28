@@ -1,6 +1,6 @@
 <?php
 
-// Database settings ============================
+// Database settings ======================================
 
 // Database type (mysql, pgsql or sqlite)
 $ENV['DB_TYPE'] = 'mysql';
@@ -25,7 +25,8 @@ $ENV['DB_FILE'] = '';
 $ENV['DBGEN_USER'] = 'change-me';
 $ENV['DBGEN_PASS'] = 'change-me';
 
-// Other settings ===============================
+
+// Other settings =========================================
 
 // Enable or disable debug
 $ENV['DEBUG'] = false;
