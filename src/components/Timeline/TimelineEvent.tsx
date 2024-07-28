@@ -17,20 +17,16 @@ export default function TimelineEvent({ data }: { data: Event }) {
                     </div>
                     <div className="content">
                         <Typography>{data.description}</Typography>
-                        <Stack sx={{ color: "#555" }}>
-                            {data.links.map((link, index) => (
-                                <Button
-                                    component="a"
-                                    target="_blank"
-                                    href={link.href}
-                                    variant="outlined"
-                                    color="inherit"
-                                    key={index}
-                                >
-                                    {link.title}
-                                </Button>
-                            ))}
-                        </Stack>
+
+                        <Button
+                            component="a"
+                            target="_blank"
+                            href={data.link}
+                            variant="outlined"
+                            color="inherit"
+                        >
+                            {data.linkTitle}
+                        </Button>
                     </div>
                 </div>
             </div>
