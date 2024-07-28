@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainLayout from "./layouts/Main";
 import LandingPage from "./pages/Landing";
 import Admin from "./admin/Admin";
-import Overview from "./admin/pages/Overview";
+import AdminOverview from "./admin/pages/Overview";
 import EventsPage from "./pages/Events";
 import AuthLayout from "./auth/Layout";
 import LoginPage from "./auth/Login";
@@ -15,6 +15,7 @@ import CoursesPage from "./pages/courses/Courses";
 import AboutPage from "./pages/About";
 import { Auth } from "./auth/Auth";
 import LogoutPage from "./auth/Logout";
+import AdminEventsPage from "./admin/pages/Events";
 
 const router = createBrowserRouter([
     {
@@ -23,7 +24,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/admin",
-                element: <Overview />,
+                element: <AdminOverview />,
+            },
+            {
+                path: "events",
+                element: <AdminEventsPage />,
             },
         ],
     },

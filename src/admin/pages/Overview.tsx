@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import PageAppBar from "../components/PageAppBar";
 
-export default function Overview() {
+export default function AdminOverview() {
     return (
         <>
             <PageAppBar title="Panou Administrativ" />
