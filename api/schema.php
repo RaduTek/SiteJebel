@@ -40,7 +40,9 @@ const Event = [
     'photoId' => PDO::PARAM_STR,
     'color' => PDO::PARAM_STR,
     'description' => PDO::PARAM_STR,
-    'link' => PDO::PARAM_STR
+    'visible' => PDO::PARAM_BOOL,
+    'link' => PDO::PARAM_STR,
+    'linkTitle' => PDO::PARAM_STR
 ];
 
 /**
