@@ -3,7 +3,7 @@ import { atomWithStorage } from "jotai/utils";
 import { AuthData } from "./auth/Auth";
 
 export const adminDrawerOpen = atom(false);
-export const authData = atomWithStorage<AuthData | undefined>(
+export const authDataAtom = atomWithStorage<AuthData | undefined>(
     "authData",
     undefined
 );
