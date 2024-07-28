@@ -1,5 +1,5 @@
-import { useSetAtom } from "jotai";
-import { authData } from "../atoms";
+import { useAtom } from "jotai";
+import { authDataAtom } from "../atoms";
 import { useEffect } from "react";
 
 export interface AuthData {
@@ -11,9 +11,11 @@ export interface AuthData {
 }
 
 export function Auth({ children }: { children?: React.ReactNode }) {
-    const setAuthData = useSetAtom(authData);
+    const [authData, setAuthData] = useAtom(authDataAtom);
 
     useEffect(() => {
+        if (authData) return;
+
         fetch("api/auth/check.php", { method: "GET" })
             .then((res) => res.json())
             .then((json) => {
@@ -21,7 +23,7 @@ export function Auth({ children }: { children?: React.ReactNode }) {
                 setAuthData(data);
             })
             .catch((err) => console.error("error:" + err));
-    }, [setAuthData]);
+    }, [authData, setAuthData]);
 
     return <>{children}</>;
 }
