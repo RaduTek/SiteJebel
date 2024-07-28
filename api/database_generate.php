@@ -16,7 +16,8 @@
 require_once("include.php");
 
 // If marker file is present, exit
-if (file_exists("database_generated"))
+// Debug flag disables this check           
+if (!$ENV['DEBUG'] && file_exists("database_generated"))
     exit(500);
 
 // Set output type
@@ -30,7 +31,7 @@ $success_count = 0;
 // For each table, create or update it
 foreach (DB_Tables as $table => $schema) {
     try {
-        $crud = new CRUD($pdo, $table, $schema);
+        $crud = new CRUD($pdo, [$table => $schema]);
         if ($crud->createOrUpdateTable()) {
             $success_count++;
         } else {
