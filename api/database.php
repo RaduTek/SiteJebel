@@ -45,17 +45,17 @@ class CRUD
      * Constructor to initialize PDO instance, table name, and schema.
      * 
      * @param PDO $pdo The PDO instance.
-     * @param string $table The name of the table.
-     * @param array $schema The schema of the table, with column names as keys and PDO data types as values.
+     * @param array $table_schema Key/value pair that defines the table name and table schema
      */
-    public function __construct(PDO $pdo, string $table, array $schema)
+    public function __construct(PDO $pdo, array $table_schema)
     {
         $this->pdo = $pdo;
-        $this->table = $table;
-        $this->schema = $schema;
+        $this->table = key($table_schema);
+        $this->schema = current($table_schema);
 
-        $this->columns = array_keys($schema);
+        $this->columns = array_keys($this->schema);
     }
+
 
     /**
      * Get the columns of the table.
