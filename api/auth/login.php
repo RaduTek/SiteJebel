@@ -1,47 +1,49 @@
 <?php
 
 require_once("../include.php");
-start_auth();
 
-$request = get_json();
+try {
+    // Start session
+    start_auth();
 
-if (!check_set_keys(['email', 'password'], $request)) {
-    return_json(["message" => "Invalid form data or method."]);
-    exit(400);
-}
+    // Get request data
+    $request = get_json();
 
-$pdo = db_connect();
-
-$stmt = $pdo->prepare("SELECT id, name, email, password, isAdmin FROM users WHERE email = :email");
-$stmt -> bindParam(":email", $request['email']);
-$stmt -> execute();
-
-$row = $stmt -> fetch(PDO::FETCH_ASSOC);
-
-$result = [];
-$code = 200;
-
-if ($row) {
-    if (password_verify($request['password'], $row['password'])) {
-        // Auth OK
-        $session_data['userId'] = $row['id'];
-        $session_data['name'] = $row['name'];
-        $session_data['email'] = $row['email'];
-        $session_data['isAdmin'] = boolval($row['isAdmin']);
-        
-        set_session($session_data);
-        $result['message'] = "Authenticated succesfully!";
-        $result['authData'] = $session_data;
-    } else {
-        $result['message'] = "Wrong email or password!";
-        $code = 401;
+    // Check if request is good
+    if (!check_set_keys(['email', 'password'], $request)) {
+        return_json(["status" => "Invalid form data or method."], 400);
     }
-} else {
-    $result['message'] = "Unknown email address!";
-    $code = 401;
+
+    // Connect to database
+    $pdo = db_connect();
+
+    // Create CRUD object
+    $crud = new CRUD($pdo, Table_Users);
+
+    // Read user with specified email
+    $user = $crud->read($request['email'], 'email');
+
+    // Check if user exists
+    if ($user !== null) {
+        if (password_verify($request['password'], $user['password'])) {
+            // Password good
+            // Set user into session
+            set_user($user);
+
+            // Return OK and session data
+            return_json([
+                "status" => "auth_ok",
+                "authData" => get_auth_data()
+            ]);
+        } else {
+            // Email and password pair bad
+            return_json(["status" => "wrong_email_or_pass"], 401);
+        }
+    } else {
+        // Unknown email - user does not exist
+        return_json(["status" => "unknown_email"], 401);
+    }
+} catch (Exception $e) {
+    // Handle any exceptions
+    return_json(["status" => "error", "message" => $e->getMessage()], 500);
 }
-
-return_json($result);
-exit($code);
-
-?>
