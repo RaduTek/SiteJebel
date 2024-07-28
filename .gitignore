@@ -1,2 +1,4 @@
-api/env.php
-test
+env.php
+/api/env.php
+/api/database_generated
+/test
