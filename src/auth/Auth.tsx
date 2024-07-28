@@ -16,7 +16,7 @@ export function Auth({ children }: { children?: React.ReactNode }) {
     useEffect(() => {
         if (authData) return;
 
-        fetch("api/auth/check.php", { method: "GET" })
+        fetch("/api/auth/check.php", { method: "GET" })
             .then((res) => res.json())
             .then((json) => {
                 const data: AuthData = json as AuthData;
