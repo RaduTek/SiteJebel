@@ -42,10 +42,10 @@ function get_json(): array
 /**
  * Sends a JSON response with the specified data and status code.
  *
- * @param object $data The data to be encoded as JSON and returned.
+ * @param mixed $data The data to be encoded as JSON and returned.
  * @param int $status_code The HTTP status code for the response. Default is 200.
  */
-function return_json(object $data, int $status_code = 200)
+function return_json(mixed $data, int $status_code = 200)
 {
     header('Content-Type: application/json');
     http_response_code($status_code);
