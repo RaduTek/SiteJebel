@@ -68,4 +68,39 @@ function check_set_keys(array $keys, array $array)
     return true;
 }
 
-?>
+/**
+ * Removes values from an array with specified keys.
+ *
+ * @param array $array Source associative array.
+ * @param array $keys Array of keys to remove from the source array.
+ * @return array New array with specified key/value pairs removed.
+ */
+function strip_keys(array $array, array $keys): array
+{
+    $newarray = $array;
+    foreach ($keys as $key) {
+        if (isset($newarray[$key]))
+            unset($newarray[$key]);
+    }
+
+    return $newarray;
+}
+
+/**
+ * Returns a new array with only the key/value pairs matching the keys given as a parameter.
+ *
+ * @param array $array Source associative array.
+ * @param array $keys Array of keys to keep in the source array.
+ * @return array New array with only the specified key/value pairs.
+ */
+function keep_keys(array $array, array $keys): array
+{
+    $newarray = [];
+    foreach ($keys as $key) {
+        if (isset($array[$key])) {
+            $newarray[$key] = $array[$key];
+        }
+    }
+
+    return $newarray;
+}
