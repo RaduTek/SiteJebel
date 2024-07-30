@@ -16,7 +16,7 @@ try {
     $pdo = db_connect();
 
     // Create CRUD object
-    $crud = new CRUD($pdo, Table_Users);
+    $crud = new CRUD($pdo, Users);
 
     // Check if the user already exists with the provided email
     $existing_user = $crud->read($request['email'], 'email');

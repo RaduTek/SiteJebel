@@ -18,7 +18,7 @@ try {
     $pdo = db_connect();
 
     // Create CRUD object
-    $crud = new CRUD($pdo, Table_Users);
+    $crud = new CRUD($pdo, Users);
 
     // Read user with specified email
     $user = $crud->read($request['email'], 'email');
