@@ -107,3 +107,13 @@ function keep_keys(array $array, array $keys): array
 
     return $newarray;
 }
+
+
+function exit_if_wrong_request_type(string $request_type = "POST")
+{
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST')
+        return_json([
+            'status' => 'error',
+            'message' => 'Wrong request type!',
+        ], 400);
+}
