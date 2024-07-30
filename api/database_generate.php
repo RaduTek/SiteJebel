@@ -29,9 +29,9 @@ $pdo = db_connect();
 $success_count = 0;
 
 // For each table, create or update it
-foreach (DB_Tables as $table => $schema) {
+foreach (DB_Tables as $schema) {
     try {
-        $crud = new CRUD($pdo, [$table => $schema]);
+        $crud = new CRUD($pdo, $schema);
         if ($crud->createOrUpdateTable()) {
             $success_count++;
         } else {
