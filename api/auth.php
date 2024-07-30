@@ -80,7 +80,7 @@ function get_auth_data(): array
     $auth_data['isAuthed'] = is_authed();
 
     if (is_authed()) {
-        $user_data = strip_keys(get_user(), User_sensitive_keys);
+        $user_data = strip_keys(get_user(), Users['sensitive_columns']);
         $auth_data += $user_data;
     }
 
