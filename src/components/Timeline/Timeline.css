@@ -89,11 +89,11 @@
     cursor: default;
 }
 
-.timelineRoot .timelineItem .body .card .title a {
+.timelineRoot .timelineItem .body .card .title .link {
     text-decoration: none;
     color: white;
 }
-.timelineRoot .timelineItem .body .card .title a[href]:hover {
+.timelineRoot .timelineItem .body .card .title a.link[href]:hover {
     text-decoration: underline;
     cursor: pointer;
 }
