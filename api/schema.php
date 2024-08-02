@@ -38,7 +38,7 @@ const Events = [
     'table_name' => 'events',
     'columns' => [
         'id' => [
-            'type' => 'INT',
+            'type' => 'VARCHAR(255)',
             'index' => 'primary',
             'unique' => true,
         ],
