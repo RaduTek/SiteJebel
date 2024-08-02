@@ -39,10 +39,12 @@ const eventColors = [
 export default function EditModal({
     open,
     onClose,
+    onSuccess,
     event,
 }: {
     open: boolean;
     onClose: () => void;
+    onSuccess?: (event: Event) => void;
     event?: Event;
 }) {
     const editMode = event !== undefined;
@@ -70,14 +72,12 @@ export default function EditModal({
         if (newDate) setSelectedDate(newDate);
     };
 
-    const handleFormSubmit = async (
-        event: React.FormEvent<HTMLFormElement>
-    ) => {
-        event.preventDefault();
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setFormLoading(true);
         setFormStatus(null);
 
-        const form = event.currentTarget;
+        const form = e.currentTarget;
         const formData = new FormData(form);
         formData.set("date", selectedDate.format("YYYY-MM-DD HH:mm:ss")); // Use MySQL datetime format
 
@@ -86,6 +86,11 @@ export default function EditModal({
         formData.forEach((value, key) => {
             formDataObject[key] = value;
         });
+
+        // Keep ID in data for edit mode
+        if (editMode) {
+            formDataObject.id = event.id;
+        }
 
         // Ensure `visible` is a boolean value (0 or 1)
         formDataObject.visible = formDataObject.visible === "on" ? 1 : 0;
@@ -124,6 +129,9 @@ export default function EditModal({
         setFormLoading(false);
 
         if (editMode) {
+            if (onSuccess) {
+                onSuccess(formDataObject as Event);
+            }
             onClose();
         }
     };

@@ -47,7 +47,6 @@ export default function AdminEventsPage() {
             .then((_data) => {
                 setIsLoading(false);
                 setData(_data as ApiList);
-                console.log(_data);
             })
             .catch((reason) => {
                 setIsLoading(false);
