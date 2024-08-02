@@ -26,7 +26,7 @@ export default function LoginPage() {
     useEffect(() => {
         // Navigate back to home page if user is authenticated
         // This should only happen when going to a login page while being authenticated
-        if (formPage == "form" && authData && authData.isAuthed) navigate("/");
+        if (formPage === "form" && authData && authData.isAuthed) navigate("/");
     }, [authData, navigate, formPage]);
 
     const handleFormSubmit = (e: React.FormEvent) => {
