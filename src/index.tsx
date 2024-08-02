@@ -15,7 +15,7 @@ import CoursesPage from "./pages/courses/Courses";
 import AboutPage from "./pages/About";
 import { Auth } from "./auth/Auth";
 import LogoutPage from "./auth/Logout";
-import AdminEventsPage from "./admin/pages/Events";
+import AdminEventsPage from "./admin/pages/Events/Events";
 
 const router = createBrowserRouter([
     {
