@@ -87,9 +87,11 @@
     padding: 4px 12px 6px;
     font-size: 22pt;
     cursor: default;
+    flex-wrap: wrap;
 }
 
 .timelineRoot .timelineItem .body .card .title .link {
+    flex: 1;
     text-decoration: none;
     color: white;
 }
@@ -98,8 +100,7 @@
     cursor: pointer;
 }
 
-.timelineRoot .timelineItem .body .card .title span {
-    flex: 1;
+.timelineRoot .timelineItem .body .card .title .date {
     font-size: 12pt;
     display: flex;
     align-items: end;

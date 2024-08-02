@@ -1,6 +1,5 @@
 import { Button, Stack, Typography } from "@mui/material";
 import PageHeader from "../components/PageHeader";
-import PageSection from "../components/PageSection";
 import Timeline from "../components/Timeline";
 import { useNavigate } from "react-router-dom";
 import handleRouterPush from "../utils/handleRouterPush";
@@ -31,9 +30,7 @@ export default function EventsPage({ past }: { past?: boolean }) {
                     </Button>
                 </Stack>
             </PageHeader>
-            <PageSection sx={{ paddingBottom: 0 }}>
-                <Timeline past={past} />
-            </PageSection>
+            <Timeline past={past} />
         </>
     );
 }

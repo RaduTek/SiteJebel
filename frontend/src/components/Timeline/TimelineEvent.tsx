@@ -13,7 +13,9 @@ export default function TimelineEvent({ data }: { data: Event }) {
                 <div className="card">
                     <div className="title">
                         <span className="link">{data.title}</span>
-                        <span>{formatRomanianDateTime(data.date)}</span>
+                        <span className="date">
+                            {formatRomanianDateTime(data.date)}
+                        </span>
                     </div>
                     {data.photoUrl && <div className="cover-image"></div>}
                     <div className="content">
