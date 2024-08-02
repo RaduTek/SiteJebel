@@ -17,7 +17,14 @@ export default function TimelineEvent({ data }: { data: Event }) {
                             {formatRomanianDateTime(data.date)}
                         </span>
                     </div>
-                    {data.photoUrl && <div className="cover-image"></div>}
+                    {data.photoUrl && (
+                        <div
+                            className="coverImage"
+                            style={{
+                                backgroundImage: "url(" + data.photoUrl + ")",
+                            }}
+                        ></div>
+                    )}
                     <div className="content">
                         <Typography>{data.description}</Typography>
 
