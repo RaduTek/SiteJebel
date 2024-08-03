@@ -58,7 +58,7 @@ export default function PhotoPicker({
         if (source === "file") {
             // Upload photo and return URL
 
-            const response = await fetch("/api/admin/uploads/upload.php", {
+            const response = await fetch("/api/admin/uploads/image.php", {
                 method: "POST",
                 body: formData,
             });
