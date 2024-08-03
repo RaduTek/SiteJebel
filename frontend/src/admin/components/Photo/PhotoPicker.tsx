@@ -17,9 +17,11 @@ import { useState } from "react";
 export default function PhotoPicker({
     open,
     onClose,
+    maxSize,
 }: {
     open: boolean;
     onClose: (photo: string) => void;
+    maxSize?: string;
 }) {
     const [source, setSource] = useState<"file" | "url" | "gallery">("file");
 
@@ -146,6 +148,9 @@ export default function PhotoPicker({
 
                 {source === "file" && (
                     <Box>
+                        {maxSize && (
+                            <input type="hidden" name="size" value={maxSize} />
+                        )}
                         <input type="file" name="file" required />
                     </Box>
                 )}

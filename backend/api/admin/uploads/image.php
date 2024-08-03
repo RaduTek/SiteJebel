@@ -54,9 +54,19 @@ if (isset($_FILES['file'])) {
     $originalWidth = imagesx($sourceImage);
     $originalHeight = imagesy($sourceImage);
 
-    // Calculate new dimensions
-    $maxWidth = 1024;
-    $maxHeight = 768;
+    // Set default dimensions
+    $maxWidth = $_POST['maxWidth'] ?? 1024;
+    $maxHeight = $_POST['maxHeight'] ?? 768;
+
+    // Override dimensions if 'size' parameter is provided and valid
+    if (isset($_POST['size'])) {
+        $sizes = explode('x', $_POST['size'], 2);
+        if (count($sizes) == 2 && is_numeric($sizes[0]) && is_numeric($sizes[1])) {
+            $maxWidth = (int)$sizes[0];
+            $maxHeight = (int)$sizes[1];
+        }
+    }
+
     $ratio = min($maxWidth / $originalWidth, $maxHeight / $originalHeight);
     $newWidth = round($originalWidth * $ratio);
     $newHeight = round($originalHeight * $ratio);

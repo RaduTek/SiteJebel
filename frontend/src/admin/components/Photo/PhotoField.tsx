@@ -12,10 +12,12 @@ import PhotoPicker from "./PhotoPicker";
 export default function PhotoField({
     name,
     defaultValue,
+    maxSize,
     required,
 }: {
     name?: string;
     defaultValue?: string;
+    maxSize?: string;
     required?: boolean | undefined;
 }) {
     const [photo, setPhoto] = useState<string>(
@@ -38,7 +40,11 @@ export default function PhotoField({
 
     return (
         <>
-            <PhotoPicker open={pickerOpen} onClose={pickerClose} />
+            <PhotoPicker
+                open={pickerOpen}
+                onClose={pickerClose}
+                maxSize={maxSize}
+            />
             <input
                 type="hidden"
                 name={name}

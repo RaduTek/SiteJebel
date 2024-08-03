@@ -232,6 +232,7 @@ export default function EditModal({
                         <PhotoField
                             name="photoUrl"
                             defaultValue={eventData.photoUrl}
+                            maxSize="600x400"
                         />
 
                         <FormControlLabel
