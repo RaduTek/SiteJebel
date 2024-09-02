@@ -67,7 +67,32 @@ const Events = [
             'type' => 'VARCHAR(255)',
         ],
     ],
-    'sensitive_columns' => [],
+];
+
+const Blog_Posts = [
+    'table_name' => 'blog_posts',
+    'columns' => [
+        'id' => [
+            'type' => 'VARCHAR(64)',
+            'index' => 'primary',
+            'unique' => true,
+        ],
+        'date' => [
+            'type' => 'DATETIME',
+        ],
+        'title' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'coverPhoto' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'content' => [
+            'type' => 'TEXT',
+        ],
+        'visible' => [
+            'type' => 'BOOLEAN',
+        ],
+    ],
 ];
 
 // DB_Tables ==============================================

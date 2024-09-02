@@ -16,6 +16,9 @@ import AboutPage from "./pages/About";
 import { Auth } from "./auth/Auth";
 import LogoutPage from "./auth/Logout";
 import AdminEventsPage from "./admin/pages/Events/Events";
+import { BlogPageLoader } from "./pages/blog/BlogPage";
+import BlogPageList from "./pages/blog/BlogPageList";
+import BlogPageView from "./pages/blog/BlogPageView";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +63,15 @@ const router = createBrowserRouter([
             {
                 path: "/courses",
                 element: <CoursesPage />,
+            },
+            {
+                path: "/blog",
+                element: <BlogPageList />,
+            },
+            {
+                path: "/blog/:postId",
+                element: <BlogPageView />,
+                loader: BlogPageLoader,
             },
         ],
     },
