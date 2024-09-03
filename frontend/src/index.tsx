@@ -19,6 +19,7 @@ import AdminEventsPage from "./admin/pages/Events/Events";
 import { BlogPageLoader } from "./pages/blog/BlogPage";
 import BlogPageList from "./pages/blog/BlogPageList";
 import BlogPageView from "./pages/blog/BlogPageView";
+import LinksPage from "./pages/Links";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: "/courses",
                 element: <CoursesPage />,
+            },
+            {
+                path: "/links",
+                element: <LinksPage />,
             },
             {
                 path: "/blog",
