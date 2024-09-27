@@ -4,14 +4,9 @@ import PageSection from "../components/PageSection";
 import { ReactComponent as Facebook } from "./../components/Socials/facebook.svg";
 import { ReactComponent as Instagram } from "./../components/Socials/instagram.svg";
 import { ReactComponent as TikTok } from "./../components/Socials/tiktok.svg";
+import { ReactComponent as YouTube } from "./../components/Socials/youtube.svg";
 
 const links = [
-    {
-        name: "Facebook",
-        icon: Facebook,
-        color: "#4267B2",
-        target: "https://www.facebook.com/profile.php?id=100094637507289",
-    },
     {
         name: "Instagram",
         icon: Instagram,
@@ -23,6 +18,18 @@ const links = [
         icon: TikTok,
         color: "black",
         target: "https://www.tiktok.com/@jebel2024",
+    },
+    {
+        name: "Facebook",
+        icon: Facebook,
+        color: "#4267B2",
+        target: "https://www.facebook.com/profile.php?id=100094637507289",
+    },
+    {
+        name: "YouTube",
+        icon: YouTube,
+        color: "#FF0000",
+        target: "https://www.youtube.com/@JebelActive",
     },
 ];
 

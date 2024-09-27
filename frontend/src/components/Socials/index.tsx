@@ -1,6 +1,8 @@
 import { IconButton, Stack, SvgIcon, Typography } from "@mui/material";
 import { ReactComponent as Facebook } from "./facebook.svg";
 import { ReactComponent as Instagram } from "./instagram.svg";
+import { ReactComponent as TikTok } from "./tiktok.svg";
+import { ReactComponent as YouTube } from "./youtube.svg";
 
 const socialLinks = [
     {
@@ -9,9 +11,19 @@ const socialLinks = [
         target: "https://www.instagram.com/jebel2024/",
     },
     {
+        name: "TikTok",
+        icon: TikTok,
+        target: "https://www.tiktok.com/@jebel2024",
+    },
+    {
         name: "Facebook",
         icon: Facebook,
         target: "https://www.facebook.com/profile.php?id=100094637507289",
+    },
+    {
+        name: "YouTube",
+        icon: YouTube,
+        target: "https://www.youtube.com/@JebelActive",
     },
 ];
 
@@ -36,6 +48,7 @@ export default function Socials({ large }: { large?: boolean }) {
                     >
                         <SvgIcon
                             component={link.icon}
+                            sx={{ color: "black" }}
                             inheritViewBox
                             fontSize="inherit"
                         />
