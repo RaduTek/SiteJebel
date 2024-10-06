@@ -47,7 +47,7 @@ class CRUD
         }
 
         $columns_str = implode(", ", $columns);
-        $bind_keys_str = implode(", ", array_map(fn ($col) => ":$col", $columns));
+        $bind_keys_str = implode(", ", array_map(fn($col) => ":$col", $columns));
 
         $query = "INSERT INTO {$this->table} ({$columns_str}) VALUES ({$bind_keys_str})";
         $stmt = $this->pdo->prepare($query);
@@ -102,7 +102,7 @@ class CRUD
                 throw new InvalidArgumentException("Column $col does not exist in the schema.");
         }
 
-        $update_str = implode(", ", array_map(fn ($col) => "$col = :$col", $columns));
+        $update_str = implode(", ", array_map(fn($col) => "$col = :$col", $columns));
 
         $query = "UPDATE {$this->table} SET {$update_str} WHERE {$id_column} = :id";
         $stmt = $this->pdo->prepare($query);
@@ -138,6 +138,9 @@ class CRUD
      */
     public function createOrUpdateTable(): bool
     {
+        $charset = 'utf8mb4';
+        $collation = 'utf8mb4_unicode_ci';
+
         $columns = [];
         foreach ($this->columns as $col => $options) {
             $column_def = "$col " . $options['type'];
@@ -151,7 +154,11 @@ class CRUD
         }
 
         $columns_str = implode(", ", $columns);
-        $query = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columns_str})";
+
+        // Add charset and collation to the CREATE TABLE statement
+        $query = "CREATE TABLE IF NOT EXISTS {$this->table} ({$columns_str}) 
+              CHARACTER SET $charset COLLATE $collation";
+
         $stmt = $this->pdo->prepare($query);
 
         if (!$stmt->execute()) {
