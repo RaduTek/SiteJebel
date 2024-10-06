@@ -43,6 +43,11 @@ const sidebarLinks = [
         target: "/admin/events",
     },
     {
+        name: "Postări",
+        icon: <Today />,
+        target: "/admin/posts",
+    },
+    {
         name: "Administratori",
         icon: <Group />,
         target: "/admin/users",
