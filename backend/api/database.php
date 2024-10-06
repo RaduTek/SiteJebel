@@ -20,7 +20,12 @@ function db_connect(): ?PDO
         $pdo_dsn = "{$ENV['DB_TYPE']}:host={$ENV['DB_HOST']};dbname={$ENV['DB_NAME']}";
 
     try {
-        $pdo = new PDO($pdo_dsn, $ENV['DB_USER'], $ENV['DB_PASS']);
+        $pdo = new PDO(
+            $pdo_dsn,
+            $ENV['DB_USER'],
+            $ENV['DB_PASS'],
+            array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+        );
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException $e) {
         if ($ENV['DEBUG'])
