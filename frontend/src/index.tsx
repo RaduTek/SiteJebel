@@ -11,15 +11,20 @@ import EventsPage from "./pages/Events";
 import AuthLayout from "./auth/Layout";
 import LoginPage from "./auth/Login";
 import SignUpPage from "./auth/SignUp";
-import CoursesPage from "./pages/courses/Courses";
+import CoursesPage from "./pages/Courses/Courses";
 import AboutPage from "./pages/About";
 import { Auth } from "./auth/Auth";
 import LogoutPage from "./auth/Logout";
 import AdminEventsPage from "./admin/pages/Events/Events";
-import { BlogPageLoader } from "./pages/blog/BlogPage";
-import BlogPageList from "./pages/blog/BlogPageList";
-import BlogPageView from "./pages/blog/BlogPageView";
+import { BlogPageLoader } from "./pages/Blog/BlogPage";
+import BlogPageList from "./pages/Blog/BlogPageList";
+import BlogPageView from "./pages/Blog/BlogPageView";
 import LinksPage from "./pages/Links";
+import AdminBlogPosts from "./admin/pages/Blog/BlogPosts";
+import BlogPostEdit from "./admin/pages/Blog/BlogEdit";
+import Course from "./pages/Courses/Course";
+import { CoursesLoader } from "./pages/Courses/CoursesLoader";
+import { CourseLoader } from "./pages/Courses/CourseLoader";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +38,18 @@ const router = createBrowserRouter([
             {
                 path: "events",
                 element: <AdminEventsPage />,
+            },
+            {
+                path: "posts",
+                element: <AdminBlogPosts />,
+            },
+            {
+                path: "posts/new",
+                element: <BlogPostEdit mode="new" />,
+            },
+            {
+                path: "posts/edit/:id",
+                element: <BlogPostEdit mode="edit" />,
             },
         ],
     },
@@ -64,6 +81,12 @@ const router = createBrowserRouter([
             {
                 path: "/courses",
                 element: <CoursesPage />,
+                loader: CoursesLoader,
+            },
+            {
+                path: "/course/:courseId",
+                element: <Course />,
+                loader: CourseLoader,
             },
             {
                 path: "/links",
