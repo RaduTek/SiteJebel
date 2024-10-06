@@ -48,7 +48,7 @@ function get_json(): array
  */
 function return_json(mixed $data, int $status_code = 200, bool $exit = true)
 {
-    header('Content-Type: application/json');
+    header('Content-Type: application/json; charset=utf-8');
     http_response_code($status_code);
     echo (json_encode($data));
     if ($exit)
