@@ -81,18 +81,73 @@ const Blog_Posts = [
             'type' => 'DATETIME',
         ],
         'title' => [
-            'type' => 'VARCHAR(255)',
+            'type' => 'VARCHAR(128)',
         ],
         'coverPhoto' => [
             'type' => 'VARCHAR(255)',
         ],
         'content' => [
-            'type' => 'TEXT',
+            'type' => 'MEDIUMTEXT',
         ],
         'visible' => [
             'type' => 'BOOLEAN',
         ],
     ],
+];
+
+const Courses = [
+    'table_name' => 'courses',
+    'columns' => [
+        'id' => [
+            'type' => 'VARCHAR(64)',
+            'index' => 'primary',
+            'unique' => true,
+        ],
+        'title' => [
+            'type' => 'VARCHAR(128)',
+        ],
+        'difficulty' => [
+            'type' => 'VARCHAR(128)',
+        ],
+        'shortdesc' => [
+            'type' => 'VARCHAR(255)',
+        ],
+        'description' => [
+            'type' => 'TEXT',
+        ],
+        'quiz' => [
+            'type' => 'MEDIUMTEXT',
+        ],
+        'content' => [
+            'type' => 'MEDIUMTEXT',
+        ],
+    ]
+];
+
+const Course_Progress = [
+    'table_name' => 'course_progress',
+    'columns' => [
+        'id' => [
+            'type' => 'VARCHAR(64)',
+            'index' => 'primary',
+            'unique' => true,
+        ],
+        'course_id' => [
+            'type' => 'VARCHAR(64)',
+        ],
+        'user_id' => [
+            'type' => 'VARCHAR(64)',
+        ],
+        'quiz_answers' => [
+            'type' => 'TEXT',
+        ],
+        'content_progress' => [
+            'type' => 'INT',
+        ],
+        'status' => [
+            'type' => 'VARCHAR(64)',
+        ],
+    ]
 ];
 
 // DB_Tables ==============================================
@@ -102,5 +157,8 @@ const Blog_Posts = [
  */
 const DB_Tables = [
     Users,
-    Events
+    Events,
+    Blog_Posts,
+    Courses,
+    Course_Progress,
 ];
