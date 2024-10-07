@@ -29,18 +29,20 @@ export default function Course() {
                     <Chip color="warning" label={data.course.difficulty} />
                 </Stack>
                 <Stack direction="row">
-                    {data.course.continuePageId === undefined ? (
+                    {data.course.content_progress === undefined ? (
                         <Button onClick={handleStartLogin} variant="contained">
                             Începe cursul
                         </Button>
                     ) : (
                         <Button
                             component="a"
-                            href={`/course/${data.course.id}/page/${data.course.continuePageId}`}
+                            href={`/course/${data.course.id}/page/${data.course.content_progress}`}
                             onClick={handleRouterPush(navigate)}
                             variant="contained"
                         >
-                            Începe cursul
+                            {data.course.content_progress > 0
+                                ? "Continuă cursul"
+                                : "Începe cursul"}
                         </Button>
                     )}
                 </Stack>

@@ -29,7 +29,7 @@ export default function CoursePage() {
                     direction={{ sm: "column-reverse", md: "row" }}
                     spacing={2}
                 >
-                    {data.page.prevPage && (
+                    {data.page.prev_page && (
                         <Button
                             component="a"
                             href={`/course/${data.courseId}/page/${
@@ -40,11 +40,11 @@ export default function CoursePage() {
                             size="large"
                             startIcon={<ArrowBack />}
                         >
-                            {data.page.prevPage}
+                            {data.page.prev_page}
                         </Button>
                     )}
                     <Box sx={{ flex: 1 }}></Box>
-                    {data.page.nextPage && (
+                    {data.page.next_page && (
                         <Button
                             component="a"
                             href={`/course/${data.courseId}/page/${
@@ -55,7 +55,7 @@ export default function CoursePage() {
                             size="large"
                             endIcon={<ArrowForward />}
                         >
-                            {data.page.nextPage}
+                            {data.page.next_page}
                         </Button>
                     )}
                 </Stack>
