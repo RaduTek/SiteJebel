@@ -44,6 +44,7 @@ export default function PageHeader({
                     padding: "20px",
                     gap: "15px",
                     zIndex: 50,
+                    textAlign: "center",
                 }}
             >
                 {children}
