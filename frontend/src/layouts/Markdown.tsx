@@ -56,7 +56,9 @@ const theme = createTheme({
 export default function Markdown({ text }: { text?: string }) {
     return (
         <ThemeProvider theme={theme}>
-            <MuiMarkdown>{text}</MuiMarkdown>
+            <div className="markdownHost">
+                <MuiMarkdown>{text}</MuiMarkdown>
+            </div>
         </ThemeProvider>
     );
 }
