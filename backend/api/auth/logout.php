@@ -1,5 +1,7 @@
 <?php
 
+require("../include.php");
+
 /**
  * Destroy the current session
  */
