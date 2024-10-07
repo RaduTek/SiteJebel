@@ -36,7 +36,7 @@ try {
         'email' => $request['email'],
         'phone' => $request['phone'],
         'password' => $password_hash,
-        'isAdmin' => false
+        'isAdmin' => 0
     ];
 
     // Create the user
