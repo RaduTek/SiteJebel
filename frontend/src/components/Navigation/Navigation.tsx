@@ -12,45 +12,15 @@ import {
     Toolbar,
     useMediaQuery,
 } from "@mui/material";
-import Logo from "./Logo";
-import handleRouterPush from "../utils/handleRouterPush";
+import Logo from "../Logo";
+import handleRouterPush from "../../utils/handleRouterPush";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Close, Menu } from "@mui/icons-material";
-import Socials from "./Socials";
-
-const links = [
-    {
-        name: "Despre Noi",
-        target: "/about",
-    },
-    {
-        name: "Activități",
-        target: "/events",
-    },
-    {
-        name: "Cursuri",
-        target: "/courses",
-    },
-];
-const mobileLinks = [
-    {
-        name: "Acasă",
-        target: "/",
-    },
-    {
-        name: "Despre Noi",
-        target: "/about",
-    },
-    {
-        name: "Activități",
-        target: "/events",
-    },
-    {
-        name: "Cursuri",
-        target: "/courses",
-    },
-];
+import Socials from "../Socials";
+import { Links, MobileLinks } from "./Links";
+import LargeButton from "./LargeButton";
+import MobileButton from "./MobileButton";
 
 export default function Navigation() {
     const navigate = useNavigate();
@@ -78,15 +48,8 @@ export default function Navigation() {
                     </a>
                     <Box sx={{ flex: 1 }} />
                     {isLargeScreen ? (
-                        links.map((link, index) => (
-                            <Button
-                                component="a"
-                                href={link.target}
-                                onClick={handleRouterPush(navigate)}
-                                key={index}
-                            >
-                                {link.name}
-                            </Button>
+                        Links.map((link, index) => (
+                            <LargeButton link={link} key={index} />
                         ))
                     ) : (
                         <IconButton
@@ -119,15 +82,12 @@ export default function Navigation() {
                         </Toolbar>
                         <Divider />
                         <List>
-                            {mobileLinks.map((link, index) => (
-                                <ListItemButton
-                                    component="a"
-                                    href={link.target}
-                                    onClick={drawerButtonClick}
+                            {MobileLinks.map((link, index) => (
+                                <MobileButton
+                                    link={link}
                                     key={index}
-                                >
-                                    <ListItemText>{link.name}</ListItemText>
-                                </ListItemButton>
+                                    onClick={drawerButtonClick}
+                                />
                             ))}
                         </List>
                         <Box sx={{ flex: 1 }}></Box>
