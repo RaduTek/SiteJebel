@@ -1,11 +1,11 @@
 import { Grid, Typography } from "@mui/material";
-import PageHeader from "../../components/PageHeader";
-import PageSection from "../../components/PageSection";
-import CourseCard from "./components/CourseCard";
+import PageHeader from "../../../components/PageHeader";
+import PageSection from "../../../components/PageSection";
+import CourseCard from "../components/CourseCard";
 import { useLoaderData } from "react-router-dom";
 import { CoursesLoaderData } from "./CoursesLoader";
 
-export default function CoursesPage() {
+export default function Courses() {
     const loaderData = useLoaderData() as CoursesLoaderData;
 
     return (

@@ -1,4 +1,4 @@
-import { CourseListItem } from "./types";
+import { CourseListItem } from "../types";
 import { Params } from "react-router-dom";
 
 export interface CoursesLoaderData {
@@ -13,7 +13,6 @@ export async function CoursesLoader({ params }: { params: Params<string> }) {
             throw new Error("Failed to fetch courses");
         }
         const data = await response.json();
-        console.log(data);
         return { courses: data as CourseListItem[] };
     } catch (error) {
         console.error("Error loading courses:", error);

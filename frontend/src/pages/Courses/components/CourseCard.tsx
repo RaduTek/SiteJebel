@@ -28,7 +28,7 @@ export default function CourseCard({ data }: { data: CourseListItem }) {
                 </CardContent>
 
                 <Stack direction="row" spacing={1} sx={{ mx: 1.5 }}>
-                    <Chip color="warning" label="Dificultate Medie" />
+                    <Chip color="warning" label={data.difficulty} />
                     <Chip color="info" label="În progres" />
                     <Chip color="success" label="Completat" />
                 </Stack>

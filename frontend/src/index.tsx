@@ -11,7 +11,6 @@ import EventsPage from "./pages/Events";
 import AuthLayout from "./auth/Layout";
 import LoginPage from "./auth/Login";
 import SignUpPage from "./auth/SignUp";
-import CoursesPage from "./pages/Courses/Courses";
 import AboutPage from "./pages/About";
 import { Auth } from "./auth/Auth";
 import LogoutPage from "./auth/Logout";
@@ -22,9 +21,15 @@ import BlogPageView from "./pages/Blog/BlogPageView";
 import LinksPage from "./pages/Links";
 import AdminBlogPosts from "./admin/pages/Blog/BlogPosts";
 import BlogPostEdit from "./admin/pages/Blog/BlogEdit";
-import Course from "./pages/Courses/Course";
-import { CoursesLoader } from "./pages/Courses/CoursesLoader";
-import { CourseLoader } from "./pages/Courses/CourseLoader";
+
+import { CoursesLoader } from "./pages/Courses/Courses/CoursesLoader";
+
+import Course from "./pages/Courses/Course/Course";
+import { CourseLoader } from "./pages/Courses/Course/CourseLoader";
+
+import CoursePage from "./pages/Courses/CoursePage/CoursePage";
+import { CoursePageLoader } from "./pages/Courses/CoursePage/CoursePageLoader";
+import Courses from "./pages/Courses/Courses/Courses";
 
 const router = createBrowserRouter([
     {
@@ -80,13 +85,18 @@ const router = createBrowserRouter([
             },
             {
                 path: "/courses",
-                element: <CoursesPage />,
+                element: <Courses />,
                 loader: CoursesLoader,
             },
             {
                 path: "/course/:courseId",
                 element: <Course />,
                 loader: CourseLoader,
+            },
+            {
+                path: "/course/:courseId/page/:pageId",
+                element: <CoursePage />,
+                loader: CoursePageLoader,
             },
             {
                 path: "/links",
