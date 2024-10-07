@@ -127,15 +127,12 @@ const Courses = [
 const Course_Progress = [
     'table_name' => 'course_progress',
     'columns' => [
-        'id' => [
+        'user_id' => [
             'type' => 'VARCHAR(64)',
             'index' => 'primary',
             'unique' => true,
         ],
         'course_id' => [
-            'type' => 'VARCHAR(64)',
-        ],
-        'user_id' => [
             'type' => 'VARCHAR(64)',
         ],
         'start_date' => [
