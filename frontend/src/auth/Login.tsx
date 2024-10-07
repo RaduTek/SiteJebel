@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import handleRouterPush from "../utils/handleRouterPush";
-import { authDataAtom } from "../atoms";
+import { authDataAtom, gotoAfterLogin } from "../atoms";
 import { useAtom } from "jotai";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function LoginPage() {
     const navigate = useNavigate();
@@ -23,11 +23,16 @@ export default function LoginPage() {
     );
     const [errorMessage, setErrorMessage] = useState("");
 
-    useEffect(() => {
-        // Navigate back to home page if user is authenticated
-        // This should only happen when going to a login page while being authenticated
-        if (formPage === "form" && authData && authData.isAuthed) navigate("/");
-    }, [authData, navigate, formPage]);
+    const [goto, setGoto] = useAtom(gotoAfterLogin);
+
+    // useEffect(() => {
+    //     // Navigate back to home page if user is authenticated
+    //     // This should only happen when going to a login page while being authenticated
+    //     if (formPage === "form" && authData && authData.isAuthed) {
+    //         navigate(goto ? goto : "/");
+    //         setGoto(undefined);
+    //     }
+    // }, [authData, navigate, formPage, goto]);
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -42,12 +47,17 @@ export default function LoginPage() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setFormLoading(false);
 
                 if (data.authData) {
                     // All is well
-                    setFormPage("success");
+                    if (goto) {
+                        const url = goto;
+                        setGoto(undefined);
+                        navigate(url);
+                    } else {
+                        setFormPage("success");
+                    }
 
                     // Set auth data to response
                     setAuthData(data.authData);
@@ -147,7 +157,7 @@ export default function LoginPage() {
                             Întoarce-te la site
                         </Button>
                     </Stack>
-                    {authData && authData.isAdmin && (
+                    {authData && authData.isAdmin ? (
                         <Stack direction="column" alignItems="center" gap={1}>
                             <Button
                                 component="a"
@@ -159,6 +169,8 @@ export default function LoginPage() {
                                 Panou administrativ
                             </Button>
                         </Stack>
+                    ) : (
+                        <></>
                     )}
                 </>
             ) : (

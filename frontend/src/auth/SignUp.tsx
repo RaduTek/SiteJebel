@@ -13,13 +13,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import handleRouterPush from "../utils/handleRouterPush";
 import { ArrowBack } from "@mui/icons-material";
-import { useEffect, useState } from "react";
-import { useAtom } from "jotai";
-import { authDataAtom } from "../atoms";
+import { useState } from "react";
+import { useAtom, useSetAtom } from "jotai";
+import { authDataAtom, gotoAfterLogin } from "../atoms";
 
 export default function SignUpPage() {
     const navigate = useNavigate();
-    const [authData, setAuthData] = useAtom(authDataAtom);
+    const setAuthData = useSetAtom(authDataAtom);
 
     const [formLoading, setFormLoading] = useState(false);
     const [formPage, setFormPage] = useState<"form" | "success" | "error">(
@@ -27,11 +27,19 @@ export default function SignUpPage() {
     );
     const [errorMessage, setErrorMessage] = useState("");
 
-    useEffect(() => {
-        // Navigate back to home page if user is authenticated
-        // This should only happen when going to a login page while being authenticated
-        if (formPage === "form" && authData && authData.isAuthed) navigate("/");
-    }, [authData, navigate, formPage]);
+    const [goto, setGoto] = useAtom(gotoAfterLogin);
+
+    // useEffect(() => {
+    //     // Navigate back to home page if user is authenticated
+    //     // This should only happen when going to a login page while being authenticated
+    //     if (
+    //         formPage === "form" &&
+    //         authData &&
+    //         authData.isAuthed &&
+    //         goto !== undefined
+    //     )
+    //         navigate("/");
+    // }, [authData, navigate, formPage, goto]);
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -46,12 +54,17 @@ export default function SignUpPage() {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 setFormLoading(false);
 
                 if (data.authData) {
                     // All is well
-                    setFormPage("success");
+                    if (goto) {
+                        const url = goto;
+                        setGoto(undefined);
+                        navigate(url);
+                    } else {
+                        setFormPage("success");
+                    }
 
                     // Set auth data to response
                     setAuthData(data.authData);
