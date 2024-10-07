@@ -138,8 +138,17 @@ const Course_Progress = [
         'user_id' => [
             'type' => 'VARCHAR(64)',
         ],
+        'start_date' => [
+            'type' => 'DATETIME',
+        ],
+        'end_date' => [
+            'type' => 'DATETIME',
+        ],
         'quiz_answers' => [
             'type' => 'TEXT',
+        ],
+        'quiz_score' => [
+            'type' => 'INT',
         ],
         'content_progress' => [
             'type' => 'INT',
