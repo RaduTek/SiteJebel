@@ -117,3 +117,9 @@ function exit_if_wrong_request_type(string $request_type = "POST")
             'message' => 'Wrong request type!',
         ], 400);
 }
+
+function arrays_are_equal($array1, $array2)
+{
+    return empty(array_diff($array1, $array2)) &&
+        empty(array_diff($array2, $array1));
+}
