@@ -3,7 +3,7 @@ import Event from "../../../components/Timeline/Event";
 import { Delete, Edit } from "@mui/icons-material";
 import { useState } from "react";
 import EditModal from "./EditModal";
-import ConfirmDialog from "../../components/ConfirmDialog";
+import ConfirmDialog from "../../../components/ConfirmDialog";
 
 export default function EventRow({ event: initialEvent }: { event: Event }) {
     const [editOpen, setEditOpen] = useState(false);

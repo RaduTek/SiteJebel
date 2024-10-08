@@ -1,7 +1,7 @@
 import { IconButton, TableCell, TableRow, Tooltip } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import { useState } from "react";
-import ConfirmDialog from "../../components/ConfirmDialog";
+import ConfirmDialog from "../../../components/ConfirmDialog";
 import { useNavigate } from "react-router-dom";
 import Post from "../../../components/Blog/Post";
 
