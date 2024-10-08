@@ -2,15 +2,15 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import PageHeader from "../../../components/PageHeader";
 import PageSection from "../../../components/PageSection";
 import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
-import { CoursePageLoaderData } from "./CoursePageLoader";
+import { CourseRunLoaderData } from "./Loader";
 import Markdown from "../../../layouts/Markdown";
 import handleRouterPush from "../../../utils/handleRouterPush";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { useEffect } from "react";
 
-export default function CoursePage() {
+export default function CourseRun() {
     const navigate = useNavigate();
-    const data = useLoaderData() as CoursePageLoaderData;
+    const data = useLoaderData() as CourseRunLoaderData;
     const location = useLocation();
 
     useEffect(() => {
@@ -32,8 +32,8 @@ export default function CoursePage() {
                     {data.page.prev_page && (
                         <Button
                             component="a"
-                            href={`/course/${data.courseId}/page/${
-                                data.pageId - 1
+                            href={`/course/run/${data.progress_id}/page/${
+                                data.page_id - 1
                             }`}
                             onClick={handleRouterPush(navigate)}
                             variant="outlined"
@@ -44,11 +44,11 @@ export default function CoursePage() {
                         </Button>
                     )}
                     <Box sx={{ flex: 1 }}></Box>
-                    {data.page.next_page && (
+                    {data.page.next_page !== undefined ? (
                         <Button
                             component="a"
-                            href={`/course/${data.courseId}/page/${
-                                data.pageId + 1
+                            href={`/course/run/${data.progress_id}/page/${
+                                data.page_id + 1
                             }`}
                             onClick={handleRouterPush(navigate)}
                             variant="outlined"
@@ -56,6 +56,18 @@ export default function CoursePage() {
                             endIcon={<ArrowForward />}
                         >
                             {data.page.next_page}
+                        </Button>
+                    ) : (
+                        <Button
+                            component="a"
+                            href={`/course/quiz/${data.progress_id}`}
+                            onClick={handleRouterPush(navigate)}
+                            variant="outlined"
+                            size="large"
+                            color="success"
+                            endIcon={<ArrowForward />}
+                        >
+                            Începe Quizul
                         </Button>
                     )}
                 </Stack>

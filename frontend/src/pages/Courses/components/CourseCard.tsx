@@ -29,7 +29,8 @@ export default function CourseCard({ data }: { data: CourseListItem }) {
 
                 <Stack direction="row" spacing={1} sx={{ mx: 1.5 }}>
                     <Chip color="warning" label={data.difficulty} />
-                    {data.status === "inprogress" ? (
+                    {data.status === "inprogress" ||
+                    data.status === "inquiz" ? (
                         <Chip color="info" label="În progres" />
                     ) : data.status === "passed" ? (
                         <Chip color="success" label="Completat" />
@@ -38,13 +39,18 @@ export default function CourseCard({ data }: { data: CourseListItem }) {
                     ) : null}
                 </Stack>
                 <CardActions>
-                    {data.content_progress && (
+                    {data.content_progress !== undefined && (
                         <Button
                             component="a"
-                            href={`/course/${data.id}/page/${data.content_progress}`}
+                            href={`/course/${data.id}/start`}
                             onClick={handleRouterPush(navigate)}
                         >
-                            {data.content_progress > 0 ? "Continuă" : "Începe"}
+                            {data.status === "passed" ||
+                            data.status === "failed"
+                                ? "Rezultate"
+                                : data.content_progress > 0
+                                ? "Continuă"
+                                : "Începe"}
                         </Button>
                     )}
                     <Button

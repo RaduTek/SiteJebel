@@ -1,33 +1,33 @@
 import { CoursePage } from "../types";
 import { Params } from "react-router-dom";
 
-export interface CoursePageLoaderData {
-    courseId: string;
-    pageId: number;
+export interface CourseRunLoaderData {
+    progress_id: string;
+    page_id: number;
     page?: CoursePage;
     error?: string;
 }
 
-export async function CoursePageLoader({ params }: { params: Params<string> }) {
+export async function CourseRunLoader({ params }: { params: Params<string> }) {
     try {
         const response = await fetch(
-            `/api/public/course/page.php?id=${params.courseId}&p=${params.pageId}`
+            `/api/public/course/page.php?id=${params.progress_id}&p=${params.page_id}`
         );
         if (!response.ok) {
             throw new Error("Failed to fetch course page!");
         }
         const data = await response.json();
         return {
-            courseId: params.courseId,
-            pageId: Number(params.pageId),
+            progress_id: params.progress_id,
+            page_id: Number(params.page_id),
             page: data as CoursePage,
-        } as CoursePageLoaderData;
+        } as CourseRunLoaderData;
     } catch (error) {
         console.error("Error loading courses:", error);
         return {
-            courseId: params.courseId,
-            pageId: Number(params.pageId),
+            progress_id: params.progress_id,
+            page_id: Number(params.page_id),
             error: error,
-        } as CoursePageLoaderData;
+        } as CourseRunLoaderData;
     }
 }

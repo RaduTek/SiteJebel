@@ -3,7 +3,7 @@ import PageHeader from "../../../components/PageHeader";
 import PageSection from "../../../components/PageSection";
 import CourseCard from "../components/CourseCard";
 import { useLoaderData } from "react-router-dom";
-import { CoursesLoaderData } from "./CoursesLoader";
+import { CoursesLoaderData } from "./Loader";
 
 export default function Courses() {
     const loaderData = useLoaderData() as CoursesLoaderData;

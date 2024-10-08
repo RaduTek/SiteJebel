@@ -21,15 +21,17 @@ import BlogPageView from "./pages/Blog/BlogPageView";
 import LinksPage from "./pages/Links";
 import AdminBlogPosts from "./admin/pages/Blog/BlogPosts";
 import BlogPostEdit from "./admin/pages/Blog/BlogEdit";
-
-import { CoursesLoader } from "./pages/Courses/Courses/CoursesLoader";
-
-import Course from "./pages/Courses/Course/Course";
-import { CourseLoader } from "./pages/Courses/Course/CourseLoader";
-
-import CoursePage from "./pages/Courses/CoursePage/CoursePage";
-import { CoursePageLoader } from "./pages/Courses/CoursePage/CoursePageLoader";
-import Courses from "./pages/Courses/Courses/Courses";
+import Courses from "./pages/Courses/Courses";
+import { CoursesLoader } from "./pages/Courses/Courses/Loader";
+import Course from "./pages/Courses/Course";
+import { CourseLoader } from "./pages/Courses/Course/Loader";
+import CourseRun from "./pages/Courses/CourseRun";
+import { CourseRunLoader } from "./pages/Courses/CourseRun/Loader";
+import CourseQuiz from "./pages/Courses/CourseQuiz";
+import { CourseQuizLoader } from "./pages/Courses/CourseQuiz/Loader";
+import { CourseStartLoader } from "./pages/Courses/CourseStartLoader";
+import CourseResult from "./pages/Courses/CourseResult";
+import { CourseResultLoader } from "./pages/Courses/CourseResult/Loader";
 
 const router = createBrowserRouter([
     {
@@ -89,14 +91,28 @@ const router = createBrowserRouter([
                 loader: CoursesLoader,
             },
             {
-                path: "/course/:courseId",
+                path: "/course/:course_id",
                 element: <Course />,
                 loader: CourseLoader,
             },
             {
-                path: "/course/:courseId/page/:pageId",
-                element: <CoursePage />,
-                loader: CoursePageLoader,
+                path: "/course/:course_id/start",
+                loader: CourseStartLoader,
+            },
+            {
+                path: "/course/run/:progress_id/page/:page_id",
+                element: <CourseRun />,
+                loader: CourseRunLoader,
+            },
+            {
+                path: "/course/quiz/:progress_id",
+                element: <CourseQuiz />,
+                loader: CourseQuizLoader,
+            },
+            {
+                path: "/course/result/:progress_id",
+                element: <CourseResult />,
+                loader: CourseResultLoader,
             },
             {
                 path: "/links",
