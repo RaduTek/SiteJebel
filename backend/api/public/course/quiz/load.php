@@ -1,24 +1,23 @@
 <?php
 
-require_once('../../include.php');
+require_once('../../../include.php');
 $pdo = db_connect();
 start_auth();
 
 exit_if_unauthed();
 
-if (!isset($_GET['id']) || !isset($_GET['p'])) {
-    return_json(["status" => "bad_request"], 400);
+if (!isset($_GET['id'])) {
+    return_json(["status" => "not_found"], 404);
 }
 
 $id = $_GET['id'];
-$p = $_GET['p'];
 
 try {
     $crud = new CRUD($pdo, Course_Progress);
 
     $progress = $crud->read(
         id: $id,
-        columns: ['id', 'user_id', 'course_id']
+        columns: ['id', 'user_id', 'course_id', 'quiz_answers', 'quiz_progress']
     );
 
     if ($progress === null) {
@@ -35,33 +34,31 @@ try {
     $crud2 = new CRUD($pdo, Courses);
     $course = $crud2->read(
         id: $progress['course_id'],
-        columns: ['id', 'title', 'content']
+        columns: ['id', 'title', 'content', 'quiz']
     );
 
     if ($course === null) {
         throw new Exception("Failed to get course data!");
     }
 
-    $content = json_decode($course['content'], true);
+    // Get quiz data
+    $quiz = json_decode($course['quiz'], true);
 
-    $response = $content[$p];
-    $response['courseTitle'] = $course['title'];
-    if ($p > 0) {
-        $response['prev_page'] = $content[$p - 1]['title'];
-    }
-    if ($p < count($content) - 1) {
-        $response['next_page'] = $content[$p + 1]['title'];
+    // Remove answers from quiz data
+    foreach ($quiz['items'] as &$item) {
+        unset($item['correct']);
     }
 
-    // Save page progress
-    $ok = $crud->update(
-        id: $id,
-        data: ['content_progress' => $p]
-    );
+    $quiz_answers = json_decode($progress['quiz_answers'], true);
 
-    if (!$ok) {
-        throw new Exception("Failed to save course page progress!");
-    }
+    $response = [
+        'progress_id' => $id,
+        'course_id' => $course['id'],
+        'course_title' => $course['title'],
+        'quiz' => $quiz,
+        'answers' => $quiz_answers,
+        'progress' => $progress['quiz_progress'],
+    ];
 
     return_json($response);
 } catch (Exception $e) {

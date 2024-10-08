@@ -33,7 +33,7 @@ try {
 
         $progress = $crud2->list(
             $filters,
-            columns: ['content_progress'],
+            columns: ['content_progress', 'status', 'quiz_score'],
             order_by: 'start_date',
             order_direction: 'DESC',
             limit: 1
@@ -42,6 +42,8 @@ try {
         if (count($progress) > 0) {
             $progress = $progress[0];
             $result['content_progress'] = $progress['content_progress'];
+            $result['status'] = $progress['status'];
+            $result['quiz_score'] = $progress['quiz_score'];
         } else {
             $result['content_progress'] = 0;
         }
