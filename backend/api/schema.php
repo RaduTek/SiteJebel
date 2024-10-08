@@ -127,10 +127,13 @@ const Courses = [
 const Course_Progress = [
     'table_name' => 'course_progress',
     'columns' => [
-        'user_id' => [
+        'id' => [
             'type' => 'VARCHAR(64)',
             'index' => 'primary',
-            'unique' => true,
+            'unique' => 'true'
+        ],
+        'user_id' => [
+            'type' => 'VARCHAR(64)',
         ],
         'course_id' => [
             'type' => 'VARCHAR(64)',
@@ -144,8 +147,14 @@ const Course_Progress = [
         'quiz_answers' => [
             'type' => 'TEXT',
         ],
+        'quiz_progress' => [
+            'type' => 'INT',
+        ],
         'quiz_score' => [
             'type' => 'INT',
+        ],
+        'quiz_correct' => [
+            'type' => 'TEXT',
         ],
         'content_progress' => [
             'type' => 'INT',
